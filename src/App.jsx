@@ -1,10 +1,6 @@
 import { useState } from "react";
-import MovieList from "./cine/MovieList";
-import Footer from "./Footer";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-
 import { MovieContext } from "./context";
+import Page from "./Page";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -12,14 +8,7 @@ function App() {
   return (
     <>
       <MovieContext.Provider value={{ cartData, setCartData }}>
-        <Header />
-        <main>
-          <div className="container grid lg:grid-cols-[218px_1fr] gap-14">
-            <Sidebar />
-            <MovieList />
-          </div>
-        </main>
-        <Footer />
+        <Page />
       </MovieContext.Provider>
     </>
   );
