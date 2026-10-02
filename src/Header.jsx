@@ -9,7 +9,7 @@ import { MovieContext, ThemeContext } from "./context";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
-  const { cartData } = useContext(MovieContext);
+  const { state } = useContext(MovieContext);
   const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   function handleCartShow() {
@@ -61,9 +61,9 @@ const Header = () => {
                 height="24"
                 alt=""
               />
-              {cartData.length > 0 && (
+              {state.cartData.length > 0 && (
                 <span className="rounded-full absolute -top-3 left-7 bg-[#12CF6F] text-white text-center p-0.5 w-7.5 h-7.5">
-                  {cartData.length}
+                  {state.cartData.length}
                 </span>
               )}
             </a>
