@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { toast } from "react-toastify";
 import Delete from "../assets/delete.svg";
 import Checkout from "../assets/icons/checkout.svg";
 import { MovieContext } from "../context";
@@ -8,13 +9,16 @@ const CartDetails = ({ onClose }) => {
   const { cartData, setCartData } = useContext(MovieContext);
   console.log(cartData);
 
-  function handleDeleteCart(event, itemId) {
+  function handleDeleteCart(event, movie) {
     event.preventDefault();
     const filteredItem = cartData.filter((item) => {
-      return item.id !== itemId;
+      return item.id !== movie.id;
     });
 
     setCartData([...filteredItem]);
+    toast.success(`${movie.title} removed from the cart!!`, {
+      position: "bottom-right",
+    });
   }
 
   return (
@@ -51,7 +55,7 @@ const CartDetails = ({ onClose }) => {
                   <div className="flex justify-between gap-4 items-center">
                     <button
                       className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
-                      onClick={() => handleDeleteCart(event, item.id)}
+                      onClick={() => handleDeleteCart(event, item)}
                     >
                       <img className="w-5 h-5" src={Delete} alt="Delete" />
                       <span className="max-md:hidden">Remove</span>
